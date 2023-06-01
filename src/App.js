@@ -7,7 +7,8 @@ function App(){
 
     const addInput = (newText) => {
         const updatedInput = [...updateText, newText];
-        setUpdateText(updatedInput)
+        setUpdateText(updatedInput);
+        console.log("hi");
     }
 
     const renderInputs =  updateText.map((text) => {
@@ -17,7 +18,7 @@ function App(){
     })
     return (
       <>
-        <UserName name="kuldeep" />
+        <UserName onSubmit={addInput} />
         <Input userName="kuldeep" onSubmit={addInput}/>
         <ul>{renderInputs}</ul>
         <FetchApi />

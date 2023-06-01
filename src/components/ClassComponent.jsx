@@ -10,7 +10,7 @@ export default class UserName extends React.Component {
   
   handleSubmit = (event) => {
     event.preventDefault();
-    this.onSubmit(this.state.text);
+    this.props.onSubmit(event);
   };
 
   render() {
