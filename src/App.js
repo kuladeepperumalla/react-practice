@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import UserName from "./components/ClassComponent"
 import Input from './components/Input';
-import FetchApi from "./components/FetchAPI";
+import FetchApi from "./components/FetchApi";
 function App(){
     const [updateText, setUpdateText] = useState([]);
 
@@ -11,9 +11,9 @@ function App(){
         console.log("hi");
     }
 
-    const renderInputs =  updateText.map((text) => {
+    const renderInputs =  updateText.map((text, i) => {
     return(
-    <li><p>{text}</p></li>
+    <li key={i}><p>{text}</p></li>
     )
     })
     return (

@@ -1,54 +1,22 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
-
+import DropdownMenu from "./Dropdown";
 function FetchApi() {
-  const [users, setUsers] = useState([]);
-  const [item, setItems] =  useState([]);
+    const [value, setValue] = React.useState([]);
 
-  const data = async () => {
-    fetch("https://jsonplaceholder.typicode.com/posts/1/comments")
-      .then((res) => {
-        return res.json();
-      })
-      .then((resData) => {
-        setUsers(resData);
-      });
-  };
+    const fetchApiData = async () => {
+        fetch('https://jsonplaceholder.typicode.com/posts/1/comments').then((res) => {return res.json()}).then(res => setValue(res))
+    }
 
-  useEffect(() => {
-    data();
-  }, []);
-  console.log(users);
+    useEffect(() => {
+        fetchApiData()
+    }, []);
 
-  const render = users.length > 0 && (
-  <div>
-      {users.map((user) => (
-          <Dropdown.Item
-          onChange={(e) => alert(e)}
-          key={user.id}
-          href="#/action-1"
-          >
-          {user.name}
-          </Dropdown.Item>
-          ))}
-          </div>
-  );
-  return (
-    <div>
-      <Dropdown
-        onChange={(e) => {
-          console.log(e);
-        }}
-      >
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Dropdown Button
-        </Dropdown.Toggle>
-        <Dropdown.Menu>{render}</Dropdown.Menu>
-      </Dropdown>
-      <p>{item}</p>
-    </div>
-  );
+
+    console.log(value)
+    return (
+        <>
+        <DropdownMenu data={value} />
+        </>
+    )
 }
-
 export default FetchApi;
